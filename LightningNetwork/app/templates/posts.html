@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Посты{% endblock %}
+
+{% block up %}
+<h1 align="center">Записки программиста</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 my-4 border border-white rounded" id="main">
+    <div class="container text-center">
+
+        <h1 class="mt-4">Тема проекта</h1>
+        <h3 class="mt-4">«Изучение и анализ возможностей применения технологии Lightning Network»</h3>
+
+        <h3 class="mt-4">Структура отчёта</h3>
+
+        <ul class="list-group" align="justify">
+            <li class="list-group-item list-group-item-dark"><b>1. Введение</b>
+                <br>
+            <p>Здесь пишем своими словами как поняли что такое Lightning Network.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><b>2. Отличия Lightning Network от других способов оплаты в интернете</b></li>
+            <li class="list-group-item list-group-item-dark"><b>3. Обзор кошелька для Lightning Network</b>
+                <br>
+                <p>Здесь по шагам описываем как устанавливали и использовали и с какими трудностями
+                    столкнулись, а что наоборот не вызвало трудностей.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><b>4. Обзор приложения, в которое можно заплатить кошельком</b>
+                <br>
+                <p>Здесь о том зачем это приложение может быть полезно и можно ли в нем обойтись без
+                    Lightning Network платежей.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><b>5. Заключение</b>
+                <br>
+                <p>Тут в свободной форме почему работа была для вас полезной или бесполезной, хотите
+                    ли продолжать изучать Lightning Network и почему.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><i><b>Дополнительно к отчету</b> для тех кто хочет повысить шансы успешно его сдать и
+                заодно научиться чему-то полезному
+                Находим и устанавливаем одну из реализаций Lightning Network ноды для Линукс
+                Устанавливаем и настраиваем кошелек, который может работать с этой нодой
+                На своем сайте размещаем QR-код для оплаты через Lighting Network на адрес вашего колешька либо
+                делаем paywall.</i><br><br>
+                <b>Примечание: </b><i>Установить ноду невозможно из-за ограниченных ресурсов.
+                Установка ноды требует около 150 ГБ.</i>
+            </li>
+        </ul>
+
+        <h3 class="mt-4">Посты</h3>
+
+    </div>
+    {% endblock %}

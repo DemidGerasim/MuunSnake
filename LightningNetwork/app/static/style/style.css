@@ -1,0 +1,13 @@
+body {
+    background-image: url(../img/bg.jpg);
+}
+
+#nav {
+    margin: 0 15% 0 15%;
+    background: rgb(209, 207, 207);
+    border: dotted;
+    border-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
