@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% include "security/_menu.html" %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block up %} Вход / Регистрация {% endblock %}
+
+{% block content %}
+
+{% include "security/_messages.html" %}
+
+<div class="col-md-8 my-4 border border-white rounded" id="main">
+    <div class="container text-center">
+
+        <br>
+        <div class="text-white rounded mt-5">
+            <div class="bg-white my-4 mt-5 col-lg-12 rounded">
+                <div class="row">
+                    <div class="col-lg-12 py-4">
+                        <div class="row">
+                            <div class="col-lg-6 ">
+                                <h5 class="text-dark text-center py-4 rounded">
+                                    <strong>Вход</strong>
+                                </h5>
+                                {% from "security/_macros.html" import render_field_with_errors, render_field %}
+                                <form class="container text-hide" action="/login" method="POST" name="login_user_form">
+                                    {{ login_user_form.hidden_tag() }}
+                                    {{ render_field_with_errors(login_user_form.email, class="form-control", placeholder="E-mail") }}
+                                    {{ render_field_with_errors(login_user_form.password, class="form-control", placeholder="Password") }}
+                                    <div class="py-2">
+                                        {{ render_field(login_user_form.next) }}
+                                        {{ render_field(login_user_form.submit, class="btn btn-rounded btn-block my-4 border") }}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="text-dark text-center py-4 rounded">
+                                    <strong>Регистрация</strong>
+                                </h5>
+                                <form class="text-center text-dark" method="POST" action="/newuser">
+                                    <div class="form-row my-4">
+                                        <div class="col">
+                                            <!-- First name -->
+                                            <div class="md-form">
+                                                <input type="text" class="form-control" placeholder="First name"
+                                                    name='FirstName' required>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <!-- Last name -->
+                                            <div class="md-form">
+                                                <input type="text" class="form-control" placeholder="Last name"
+                                                    name="LastName" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- E-mail -->
+                                    <div class="md-form mt-0 my-4">
+                                        <input type="email" class="form-control" placeholder="E-mail" name="E-mail"
+                                            required>
+                                    </div>
+                                    <!-- Password -->
+                                    <div class="md-form">
+                                        <input type="password" class="form-control" placeholder="Password" name="pass"
+                                            required>
+                                        <small id="materialRegisterFormPasswordHelpBlock"
+                                            class="form-text text-muted mb-4">
+                                            Пороль должен иметь минимум 8 символов.
+                                        </small>
+                                    </div>
+
+                                    <!-- Sign up button -->
+                                    <button class="btn btn-rounded btn-block my-4 border" type="submit"><i
+                                            class="fas fa-check"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% include "security/_menu.html" %}
+
+<style>
+    .text-hide {
+        font-size: 0px;
+    }
+
+    .text-show {
+        font-size: 20px;
+    }
+</style>
+
+{% endblock %}

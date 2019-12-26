@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Посты{% endblock %}
+
+{% block up %}
+<h1 align="center">Записки программиста</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 my-4 border border-white rounded" id="main">
+    <div class="container text-center">
+
+        <h1 class="mt-4">Тема проекта</h1>
+        <h3 class="mt-4">«Изучение и анализ возможностей применения технологии Lightning Network»</h3>
+
+        <h3 class="mt-4">Структура отчёта: </h3>
+
+        <ul class="list-group" align="justify">
+            <li class="list-group-item list-group-item-dark"><b>1. Введение</b>
+                <br>
+                <p>Здесь пишем своими словами как поняли что такое Lightning Network.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><b>2. Отличия Lightning Network от других способов оплаты в
+                    интернете</b></li>
+            <li class="list-group-item list-group-item-dark"><b>3. Обзор кошелька для Lightning Network</b>
+                <br>
+                <p>Здесь по шагам описываем как устанавливали и использовали и с какими трудностями
+                    столкнулись, а что наоборот не вызвало трудностей.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><b>4. Обзор приложения, в которое можно заплатить
+                    кошельком</b>
+                <br>
+                <p>Здесь о том зачем это приложение может быть полезно и можно ли в нем обойтись без
+                    Lightning Network платежей.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><b>5. Заключение</b>
+                <br>
+                <p>Тут в свободной форме почему работа была для вас полезной или бесполезной, хотите
+                    ли продолжать изучать Lightning Network и почему.</p>
+            </li>
+            <li class="list-group-item list-group-item-dark"><i><b>Дополнительно к отчету</b> для тех кто хочет повысить
+                    шансы успешно его сдать и
+                    заодно научиться чему-то полезному
+                    Находим и устанавливаем одну из реализаций Lightning Network ноды для Линукс
+                    Устанавливаем и настраиваем кошелек, который может работать с этой нодой
+                    На своем сайте размещаем QR-код для оплаты через Lighting Network на адрес вашего колешька либо
+                    делаем paywall.</i><br><br>
+                <b>Примечание: </b><i>Можно воспользоваться десктопным клиентом, однако он требует подключения к ноде, а
+                    это займет порядка 150 Гб на диске.
+                    Но у меня нет возможности установить ноду из-за ограниченных ресурсов сети...</i>
+            </li>
+        </ul>
+
+        <body>
+            <h3 class="mt-4">Посты</h3>
+            <h6><i>учетная запись <b>admin</b> <br>
+                <b>e-mail:</b> admin@gmail.com <br>
+                <b>pass:</b> admin <br>
+            </i></h6>
+
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('new_post') }}"><button class="btn btn-primary btn-block">Новый пост</button></a>
+            {% endif %}
+            <br>
+            <form action="" method="POST">
+                {% for post in posts %} {% for userAuthor in authors %} {% if post.author == userAuthor.id %}
+                <div class="col-md-12 post">
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <strong class="text-left"><i style="font-size: 150%;">
+                                    &nbsp;&nbsp;{{ userAuthor.username }}&nbsp;{{userAuthor.lastname}}</i>
+                            </strong> 
+                        </div>
+                        
+                        {% endif %} 
+                        {% endfor %}
+                        
+                        <div class="text-left col-md-12 " style="word-wrap: break-word;">
+                            <p style="padding-left: 55px; padding-top: 5px;">{{ post.text }}</p>
+                        </div>
+                        <div style="position: absolute; right: 0; padding-right: 10px;">
+                            {{ post.created }}
+                        </div>
+                        {% for userAuthor in authors %}
+                        {% if post.author == current_user.id or current_user.has_role('admin')%}
+                        
+                        <div class="btn-group"
+                            style="position: absolute; bottom: 0; right: 0; padding: 10px; padding-top: 30px;">
+                            <a href="{{ url_for('remove', id=post.id) }}">
+                                <button type="button" class="btn btn-dark"><i class="fas fa-times"></i></button>
+                            </a>
+                            <a href="{{ url_for('edite', id=post.id) }}">
+                                <button type="button" class="btn btn-dark"><i class="fas fa-edit"></i></button>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+        </body>
+        <style>
+            body {
+                position: relative;
+                overflow-x: hidden;
+            }
+
+            .post {
+                border: 2px solid #222;
+                border-radius: 5px;
+                background-color: #dddddd;
+                color: #000;
+                padding: 10px;
+                margin-top: 10px;
+            }
+        </style>
+
+    </div>
+    {% endblock %}

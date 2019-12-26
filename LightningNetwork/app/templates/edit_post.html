@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Редактировать пост {% endblock %}
+
+{% block up %} Редактировать {% endblock %}
+
+{% block content %}
+<div class="col-md-8 my-4 border border-white rounded" id="main">
+    <div class="container text-center">
+
+        <form class="border border-white my-4 bg-white rounded" action="" method="POST">
+
+            <div class="container py-1">
+
+
+                <textarea name="text" class="md-textarea form-control" rows="5" placeholder="Message..." required>
+                {{ commits.text }}
+        </textarea>
+
+                <div class="rounded my-4 bg-white">
+                    <button class="btn btn-outline-info btn-rounded btn-block waves-effect z-depth-0"
+                        type="submit">Применить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

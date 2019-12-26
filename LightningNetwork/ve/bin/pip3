@@ -1,4 +1,4 @@
-#!/home/std/web2019-2/lab1/ve/bin/python
+#!/home/std/LightningNetwork/ve/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
